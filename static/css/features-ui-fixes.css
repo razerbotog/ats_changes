@@ -1,0 +1,306 @@
+/* main content */
+.main-content {
+  padding-top: 2rem !important;
+}
+/* header*/
+.hero-section.home-header {
+  display: block !important;
+  margin-top: 0 !important;
+  background-color: #c0c0c03d;
+  min-height: 80vh !important;
+}
+/* hero */
+.hero-container.home-hero {
+  padding-top: 0 !important;
+  margin-top: 18vh;
+}
+.hero-container.home-hero > div > h2 {
+  color: #293831;
+  font-size: 4.25rem !important;
+  margin-top: 0 !important;
+  font-weight: bolder;
+}
+.hero-container.home-hero > div > h4 {
+  color: #3e4f47;
+  font-size: 38px !important;
+  margin-block: 2rem !important;
+  font-weight: 600 !important;
+}
+
+.hero-container.home-hero > div > h4 span {
+  color: #ff0000b5;
+}
+.hero-container.home-hero > div > h6 {
+  color: #3e4f47;
+  font-size: 20px !important;
+  font-weight: lighter !important;
+  line-height: 1.4;
+}
+.home-header .hero-bg-animation {
+  top: -1vh;
+  height: 560px !important;
+}
+
+@media (max-width: 1024px) {
+  /* main content */
+  .main-content {
+    padding-top: 1.6rem !important;
+  }
+  /* hero */
+  .hero-container.about-hero {
+    padding-top: 0 !important;
+    margin-top: 18vh;
+  }
+  .hero-container.home-hero > div > h2 {
+    font-size: 3.3rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 30px !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 18px !important;
+  }
+  .home-header > div.hero-bg-animation {
+    top: 5rem !important;
+    height: 450px !important;
+  }
+}
+
+/* ===============================
+  Desktops
+   ===============================
+*/
+@media (max-width: 992px) {
+  /* main */
+  .main-content {
+    padding-top: 1.6rem !important;
+  }
+
+  /* header */
+  .hero-section.home-header {
+    min-height: 70vh !important;
+  }
+  /* hero */
+  .hero-container.home-hero {
+    margin-top: 13vh;
+  }
+
+  .hero-container.home-hero > div > h2 {
+    font-size: 3.1rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 27px !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 17px !important;
+  }
+  .home-header > div.hero-bg-animation {
+    top: 2.5rem !important;
+    height: 440px !important;
+  }
+}
+@media (min-width: 897px) and (max-width: 959px) {
+  .hero-container.home-hero > div > h2 {
+    font-size: 2.9rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 25px !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 17px !important;
+  }
+  .home-header > div.hero-bg-animation {
+    top: 2.5rem !important;
+    height: 420px !important;
+  }
+}
+
+/* ===============================
+   Small tablets
+   =============================== */
+@media (min-width: 769px) and (max-width: 896px) {
+  /*header */
+  .hero-section.about-header {
+    min-height: 60vh !important;
+  }
+  /* hero */
+  .hero-container.home-hero > div > h2 {
+    font-size: 2.7rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 23px !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 17px !important;
+  }
+  .home-header > div.hero-bg-animation {
+    top: 3.5rem !important;
+    height: 380px !important;
+  }
+}
+/* ===============================
+   Medium phones & small tablets
+   =============================== */
+@media (min-width: 562px) and (max-width: 768px) {
+  /* main */
+  .main-content {
+    padding-top: 1.5rem !important;
+  }
+  /* header */
+  .hero-section.home-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+
+  /* hero */
+  .hero-container.home-hero > div > h2 {
+    font-size: 2.65rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 1.6rem !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 1.2rem !important;
+  }
+  .home-header > div.hero-bg-animation {
+    display: none;
+  }
+
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+  .home-header .pill {
+    margin-top: 20px;
+    width: 240px;
+    height: 185px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    /* padding-bottom: 2.5rem; */
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .home-header .pill img {
+    height: 203px;
+  }
+}
+@media (min-width: 400px) and (max-width: 561px) {
+  /* main */
+  .main-content {
+    padding-top: 1.4rem !important;
+  }
+  /* header */
+  .hero-section.home-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+
+  /* hero */
+  .hero-container.home-hero > div > h2 {
+    font-size: 2.1rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 1.1rem !important;
+  }
+  .home-header > div.hero-bg-animation {
+    display: none;
+  }
+
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .home-header .pill {
+    margin-top: 40px;
+    width: 230px;
+    height: 166px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    /* padding-bottom: 2.5rem; */
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .home-header .pill img {
+    height: 203px;
+  }
+}
+/* ===============================
+   Extra small phones (portrait mobile)
+   =============================== */
+@media (max-width: 399px) {
+  /* main */
+  .main-content {
+    padding-top: 1.4rem !important;
+  }
+  /* header */
+  .hero-section.home-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+  /* hero */
+  .hero-container.home-hero > div > h2 {
+    font-size: 2rem !important;
+  }
+  .hero-container.home-hero > div > h4 {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-container.home-hero > div > h6 {
+    font-size: 1rem !important;
+  }
+  .hero-container.home-hero {
+    margin-top: 8vh !important;
+  }
+  .home-header > div.hero-bg-animation {
+    display: none;
+  }
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .home-header .pill {
+    margin-top: 20px;
+    width: 230px;
+    height: 166px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    /* padding-bottom: 2.5rem; */
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .home-header .pill img {
+    height: 203px;
+  }
+}

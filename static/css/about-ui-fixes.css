@@ -1,0 +1,492 @@
+/* main content */
+.main-content {
+  padding-top: 2rem !important;
+}
+/* header */
+.hero-section.about-header {
+  display: block !important;
+  margin-top: 0 !important;
+  position: relative;
+  background-color: #c0c0c03d;
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+/* hero */
+.hero-container.about-hero {
+  padding-top: 0 !important;
+  margin-top: 17vh;
+}
+.hero-container.about-hero > div > h1 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 4.5rem !important;
+  color: #293831 !important;
+  line-height: 1 !important;
+}
+.hero-container.about-hero > div > h3 {
+  color: #3e4f47 !important;
+  font-size: 2.6rem !important;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.hero-container.about-hero > div > h3:nth-last-of-type(1) {
+  margin-bottom: 2rem;
+}
+.hero-container.about-hero > div span {
+  color: #ff0000b5;
+}
+.hero-container.about-hero > div > p {
+  color: #293831;
+  line-height: 1.4;
+  font-size: 1.2rem !important;
+}
+.about-hero .hero-cta-group {
+  display: none;
+}
+
+.about-header .hero-bg-animation {
+  background-image: url("../images/about-transparent.png");
+  top: -1vh;
+  height: 560px;
+  aspect-ratio: 1/1 !important;
+  background-size: contain !important;
+  background-position: right center !important;
+  z-index: 1;
+  backdrop-filter: none !important;
+}
+
+#hero > div.hero-container > div > h1 {
+  white-space: wrap !important;
+}
+
+/* content block */
+.why-us-grid {
+  text-align: start;
+}
+.why-us-grid :first-child {
+  padding-right: 0 !important;
+  flex-basis: 103% !important;
+}
+.section-title {
+  margin-top: 3rem !important;
+  margin-bottom: 1rem !important;
+}
+.info-card {
+  min-height: 217px !important;
+}
+/* h3 {
+  font-size: 1.5rem !important;
+} */
+.content-block {
+  margin-top: 0 !important;
+}
+.intro-block {
+  padding: 2rem 2rem !important;
+}
+section.content-block {
+  margin-top: 4rem !important;
+  padding: 0 3rem 3rem !important;
+}
+
+.value-card h4 {
+  flex-direction: column !important;
+  gap: 0.7rem !important;
+  justify-content: start !important;
+}
+.value-card p {
+  text-align: start !important;
+  margin-top: 1rem !important;
+}
+.content-block > div {
+  justify-content: center !important;
+}
+.cta-section-about h2 {
+  font-size: 2.8rem !important;
+}
+/* only info card media queries */
+/* start */
+@media (max-width: 1219px) {
+  .info-card {
+    min-height: 243px !important;
+  }
+}
+@media (min-width: 1108px) and (max-width: 1152px) {
+  .info-card {
+    min-height: 273px !important;
+  }
+}
+
+@media (min-width: 1090px) and (max-width: 1107px) {
+  .info-card {
+    min-height: 163px !important;
+  }
+}
+@media (min-width: 980px) and (max-width: 1089px) {
+  .info-card {
+    min-height: 188px !important;
+  }
+}
+@media (max-width: 979px) {
+  .info-card {
+    min-height: min-content !important;
+  }
+}
+/* end */
+
+/* ===============================
+   Large desktops
+   ===============================
+*/
+@media (max-width: 1024px) {
+  h3 {
+    font-size: 1.4rem !important;
+  }
+  /* main */
+  .main-content {
+    padding-top: 1.6rem !important;
+  }
+  /*hero */
+  .hero-container.about-hero {
+    padding-top: 0 !important;
+    margin-top: 18vh;
+  }
+  .hero-container.about-hero > div > h1 {
+    font-size: 3rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 2rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 1.12rem !important;
+  }
+  .about-header > div.hero-bg-animation {
+    top: 2.5rem;
+    left: 7px;
+    height: 450px;
+  }
+}
+
+/* ===============================
+  Desktops
+   ===============================
+*/
+@media (max-width: 992px) {
+  h3 {
+    font-size: 1.4rem !important;
+  }
+  /* main */
+  .main-content {
+    padding-top: 1.6rem !important;
+  }
+  /* header */
+  .hero-section.about-header {
+    min-height: 70vh !important;
+  }
+  /* hero */
+  .hero-container.about-hero {
+    margin-top: 13vh;
+  }
+  .hero-container.about-hero > div > h1 {
+    font-size: 2.8rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.8rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 1.1rem !important;
+  }
+  .hero-container.about-hero {
+    align-items: start !important;
+  }
+  .about-header > div.hero-bg-animation {
+    top: -0.5rem;
+    left: 7px;
+    height: 450px;
+  }
+}
+
+@media (min-width: 897px) and (max-width: 959px) {
+  .hero-container.about-hero > div > h1 {
+    font-size: 2.65rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.75rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 1.05rem !important;
+  }
+  .about-header > div.hero-bg-animation {
+    top: -0.4rem;
+    height: 428px;
+  }
+  .cta-section-about h2 {
+    font-size: 2.5rem !important;
+  }
+}
+
+/* ===============================
+   Small tablets
+   =============================== */
+@media (min-width: 769px) and (max-width: 896px) {
+  /*header */
+  .hero-section.about-header {
+    min-height: 60vh !important;
+  }
+  .hero-container.about-hero > div > h1 {
+    font-size: 2.3rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.5rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 1rem !important;
+  }
+  .about-header > div.hero-bg-animation {
+    top: -1.4rem;
+    height: 380px;
+  }
+
+  .hero-container.about-hero {
+    margin-top: 8vh;
+  }
+  .hero-container.about-hero > div {
+    max-width: 64% !important;
+  }
+  .cta-section-about h2 {
+    font-size: 2.2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  main .container {
+    padding: 0;
+  }
+  section.content-block {
+    margin-top: 2rem !important;
+    padding: 0rem 2rem 2rem !important;
+  }
+  div.why-us-grid {
+    border: 0 !important;
+  }
+  div.why-us-grid > section {
+    padding-left: 0 !important;
+    border: 0 !important;
+  }
+  .info-grid {
+    /* justify-items: start; */
+    grid-template-columns: 1fr !important;
+  }
+  .info-grid .info-card {
+    width: 100% !important;
+  }
+  h2.section-title {
+    margin-bottom: 2rem !important;
+  }
+  h3.section-title {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* ===============================
+   Medium phones & small tablets
+   =============================== */
+@media (min-width: 562px) and (max-width: 768px) {
+  /* main */
+  .main-content {
+    padding-top: 1.5rem !important;
+  }
+  /* header */
+  .hero-section.about-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+  /* hero */
+  .hero-container.about-hero > div > h1 {
+    font-size: 2.65rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.75rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 1.05rem !important;
+  }
+  .hero-container.about-hero {
+    margin-top: 8vh;
+  }
+  .hero-container.about-hero > div {
+    /* max-width: 100% !important; */
+  }
+  .about-header > div.hero-bg-animation {
+    display: none !important;
+  }
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+  .about-header .pill {
+    margin-top: 20px;
+    width: 240px;
+    height: 185px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    padding-bottom: 2.5rem;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .about-header .pill img {
+    height: 203px;
+  }
+  body > main > main div > article > h2 {
+    font-size: 2.2rem !important;
+  }
+  .cta-section-about h2 {
+    font-size: 1.7rem !important;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 561px) {
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  /* main */
+  .main-content {
+    padding-top: 1.4rem !important;
+  }
+  /* header */
+  .hero-section.about-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+
+  /* hero */
+  .hero-container.about-hero > div > h1 {
+    font-size: 1.9rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.3rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 0.85rem !important;
+  }
+  .hero-container.about-hero {
+    margin-top: 8vh;
+  }
+  .about-header > div.hero-bg-animation {
+    display: none !important;
+  }
+
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .about-header .pill {
+    margin-top: 40px;
+    width: 230px;
+    height: 166px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    padding-bottom: 2.5rem;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .about-header .pill img {
+    height: 203px;
+  }
+  body > main > main div > article > h2 {
+    font-size: 1.6rem !important;
+  }
+  body > main > main div > article > h3 {
+    font-size: 1.2rem !important;
+  }
+  .cta-section-about h2 {
+    font-size: 1.5rem !important;
+  }
+}
+/* ===============================
+   Extra small phones (portrait mobile)
+   =============================== */
+@media (max-width: 399px) {
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  /* main */
+  .main-content {
+    padding-top: 1.4rem !important;
+  }
+  /* header */
+  .hero-section.about-header {
+    min-height: 10vh !important;
+    padding-bottom: 240px;
+    position: relative;
+    background-color: #bab3a9;
+  }
+
+  /* hero */
+  .hero-container.about-hero > div > h1 {
+    font-size: 1.8rem !important;
+  }
+  .hero-container.about-hero > div > h3 {
+    font-size: 1.2rem !important;
+  }
+  .hero-container.about-hero > div > p {
+    font-size: 0.8rem !important;
+  }
+  .hero-container.about-hero {
+    margin-top: 8vh;
+  }
+  .about-header > div.hero-bg-animation {
+    display: none !important;
+  }
+
+  .cta-contact {
+    position: absolute;
+    right: -3px;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .about-header .pill {
+    margin-top: 20px;
+    width: 230px;
+    height: 166px;
+    display: flex !important;
+    background: #fff;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.6rem;
+    padding-bottom: 2.5rem;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+  .about-header .pill img {
+    height: 203px;
+  }
+  body > main > main div > article > h2 {
+    font-size: 1.4rem !important;
+  }
+  body > main > main div > article > h3 {
+    font-size: 1.2rem !important;
+  }
+  .cta-section-about h2 {
+    font-size: 1.5rem !important;
+  }
+}

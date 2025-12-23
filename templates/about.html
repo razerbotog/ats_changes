@@ -1,0 +1,773 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VHiMS - About</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style> 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        /* ----------------------------------------------------------------------------------- */
+        /* --- I. COLOR PALETTE (UPDATED WITH USER'S SPECIFICATIONS) --- */
+        /* ----------------------------------------------------------------------------------- */
+           :root {
+            /* --- USER-DEFINED CORE COLORS --- */
+            --primary-color: #3e4f47; /* Primary: Dark Teal/Green */
+            --secondary-color: orangered; /* Secondary: OrangeRed (Accent) */
+            --text-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+            --bg-light: #ffffff;
+            --bg-dark: #121212;
+            --card-light: #f9f9f9;
+            --card-dark: #1e1e1e;
+            --border-light: #e0e0e0;
+            --border-dark: #333333;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --gradient-primary: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            --gradient-hero: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            
+            /* --- ALIASES FOR COMPATIBILITY WITH EXISTING CSS RULES --- */
+            --primary-main: var(--primary-color);
+            --primary-gradient: var(--gradient-primary);
+            --text-dark-main: var(--text-dark);
+            --background-page: var(--bg-light);
+            --card-bg: var(--card-light);
+            --border-color: var(--border-light);
+            --shadow-soft: var(--shadow-light); 
+            --accent-dark-hover: #f1f3f5; /* Keeping this neutral light hover color */
+            --primary-main-dark: var(--text-dark); /* Using dark text as dark main color fallback */
+            --primary-main-light: var(--card-light); /* Using light card as light main color fallback */
+            
+            /* Status Colors (Retained default values) */
+            --success-main: #28a745; 
+            --warning-main: #ffc107; 
+            --danger-main: #dc3545; 
+            --info-main: #17a2b8; 
+
+            /* Chart Colors (Mapped to new primary/secondary) */
+            --chart-color-1: var(--primary-color); 
+            --chart-color-2: var(--secondary-color); 
+            --chart-color-3: #ffc107; 
+            --chart-color-4: #17a2b8; 
+            --chart-color-5: #6f42c1; 
+        }
+        
+        /* ----------------------------------------------------------------------------------- */
+        /* --- II. UI IMPROVEMENTS: TYPOGRAPHY, SPACING & INTERACTION --- */
+
+        
+        /* Dedicated Metric Icon Area - Focused Colors */
+        .metric-icon-area i {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Light shadow on the icon */
+            transition: transform 0.3s ease;
+        }
+        .card:hover .metric-icon-area i {
+            transform: scale(1.05);
+        }
+
+        /* Section Headers */
+        .section-header-title {
+            border-left: 4px solid var(--primary-main);
+            padding-left: 15px; line-height: 1.2;
+        }
+
+        /* Enhanced List Interaction (Activity Feed) */
+        .list-group-item {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            border-bottom: 1px solid var(--border-color) !important;
+            cursor: default;
+        }
+        .list-group-item:hover {
+            background-color: var(--accent-dark-hover) !important;
+        }
+        .list-group-item i {
+            font-size: 1.2rem;
+            /* Keep icon color based on its original class */
+        }
+
+        /* Button Styling */
+        .btn-neumorphic {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 0.5rem; 
+            background-color: var(--card-bg); 
+            color: var(--text-dark-main);
+        }
+        .btn-neumorphic-primary {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            /* Updated shadow to reflect new primary color */
+            box-shadow: 0 5px 15px rgba(62, 79, 71, 0.3); 
+            border: none;
+        }
+        .btn-neumorphic-primary:hover {
+            box-shadow: 0 8px 20px rgba(62, 79, 71, 0.4);
+            transform: translateY(-1px);
+        }
+        .btn-neumorphic:active, .btn-neumorphic-primary:active {
+            transform: scale(0.98);
+            box-shadow: var(--shadow-inset-active); 
+        }
+        
+        /* Efficiency Snapshot Layout Refinement */
+        .efficiency-snapshot-data-point {
+            position: relative;
+        }
+        /* Simple vertical divider instead of complex pseudo-element */
+        .efficiency-snapshot-data-point:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 0;
+            height: 70%;
+            width: 1px;
+            background-color: var(--border-color);
+        }
+        
+        /* Progress Bar Color */
+        .progress-bar {
+            background: var(--primary-gradient);
+        }
+
+
+
+
+
+
+
+        .page-banner h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--text-light); 
+        }
+
+        .page-banner .h1-highlight {
+             color: var(--secondary-color);
+        }
+
+        .page-banner p {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0.5rem auto 0;
+            opacity: 0.9;
+            color: var(--text-light); 
+        }
+
+        .about-main-section {
+            padding: 4rem 0 6rem 0;
+        }
+        
+        /* Main Introduction Block Style (The VHiMS Approach) */
+        .intro-block {
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            text-align: left;
+            background-color: var(--card-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .dark-mode .intro-block {
+            background-color: var(--card-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .intro-block h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .intro-block h3 {
+            font-size: 2rem;
+            color: var(--text-dark); 
+            margin-bottom: 1.5rem;
+        }
+        
+        .dark-mode .intro-block h3 {
+            color: var(--text-light);
+        }
+
+        .intro-block p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        /* Why VHiMS & Our Approach Grid */
+        .why-us-grid {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .why-us-grid > div {
+             flex: 1;
+        }
+
+        .why-us-grid h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Core Principles (using info-grid structure) */
+        .info-card {
+            background-color: var(--card-light);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            /* Override base card to be more prominent */
+            border-left: 4px solid var(--primary-color); 
+            text-align: left !important;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .info-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-dark);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .icon-text-block {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .icon-text-block i {
+            font-size: 2rem;
+            min-width: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 5px;
+        }
+        
+        /* Mission & Vision Grid */
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .content-block {
+            padding: 2.5rem;
+            border-radius: 15px;
+            background-color: var(--card-light);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .content-block {
+            background-color: var(--card-dark);
+            box-shadow: var(--shadow-dark);
+            border: 1px solid var(--border-dark);
+        }
+        
+        .mission-vision-grid .content-block:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .value-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            background-color: var(--bg-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 3px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .dark-mode .value-card {
+            background-color: #2a2a2a;
+            box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .value-card h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-card i {
+            font-size: 1.4rem;
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .cta-block-text {
+            color: var(--text-dark);
+        }
+        
+        .dark-mode .cta-block-text {
+            color: var(--text-light);
+        }
+                .info-icon,
+        .benefit-icon,
+        .feature-icon {
+            font-size: 2.5rem;
+            background: orangered;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Responsive Overrides */
+        @media (max-width: 768px) {
+            .why-us-grid {
+                flex-direction: column;
+                padding-bottom: 0;
+            }
+            .why-us-grid > div {
+                border-right: none !important;
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+                padding-bottom: 2rem;
+                border-bottom: 1px dashed var(--border-light);
+            }
+            /* Fix for mission/vision grid on mobile */
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+        
+    </style>
+    
+    <!-- <link rel="stylesheet" href="{% static 'css/responsive-fixes.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/about-ui-fixes.css' %}">
+
+    <main class="main-content">
+        <section class="hero-section about-header" id="hero" style="margin-top: -80px;">
+            <div class="hero-bg-animation"></div>
+            <div class="hero-container about-hero">
+                <div class=" animate-on-scroll" style="max-width: 90%; font-size: 35px; text-align: left;">
+                    <h1 style="color: white; white-space: nowrap;" >
+                        <!-- <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; ">About VHiMS: </span> <br> -->
+                        <!-- The VHiMS Approach: Hiring, Reimagined -->
+                         The VHiMS Approach
+                    </h1>
+                    <h3>Hiring: Reimagined</h3>
+                    <h3 style="font-style: italic;">with Clarity and Intelligence</h3>
+                    <p>
+                        <span>V</span>isionary <span>H</span>ire <span>i</span>nfera <span>M</span>etrix <span>S</span>ystem <span>(VHiMS)</span> is an <br>
+                        Intelligent Applicant Tracking System built to <br>
+                        make Hiring Clear, Structured, and Confidently Human.
+                    </p>
+                    <p style="font-style: italic;">
+                        <span>VHiMS</span> was created to bring <br>
+                        structure, speed, and human-centred intelligence to modern hiring.
+                    </p>
+                    <!-- <h2 style="color: white; font-size: 1.8rem; margin-top: 1rem; font-weight: 500;">The New Age ATS Built for Precision and Speed.</h2> -->
+                    <!-- <p style="color: white; font-size: 1.2rem; line-height: 1.6; margin-top: 1.5rem;"> -->
+<!-- Your all-in-one recruitment hub, designed to streamline your hiring process with intelligent automation and real-time analytics.                    </p> -->
+                    <div class="hero-cta-group" style="margin-top: 2rem;">
+                        <button class="nav-btn primary" id="signInBtn">
+                        BOOK FOR DEMO
+                </button>
+                        <a href="{% url 'features' %}" class="hero-cta-btn secondary animate-on-scroll delay-200">VIEW FEATURES</a>
+                    </div>
+                </div>
+                
+
+            </div>
+                    <div class="cta-contact">
+                        <div class="pill">
+                            <img src="../static/images/about-transparent.png" alt="">
+                        </div>
+                    </div>
+        </section>
+        
+        
+        <section class="content-block animate-on-scroll delay-300" style="margin-top: 3rem; text-align: center; padding: 4rem 3rem;">
+
+            <div class="container">
+                
+                <article class="intro-block animate-on-scroll delay-100">
+                    <h2>The VHiMS Approach</h2>
+                    <h3>Hiring, Reimagined with Clarity and Intelligence</h3>
+                    <p class="animate-on-scroll delay-300">
+                        Visionary Hire infera Metrix System (VHiMS) is an intelligent applicant tracking system built to make hiring clear, structured, and confidently human.
+                        <br>
+                        VHiMS was created to bring structure, speed, and human-centred intelligence to modern hiring.
+                        <br>
+                        Traditional tools make recruitment feel scattered and mechanical — VHiMS makes it clear, connected, and genuinely intuitive.
+                        <br>
+                        We focus on what matters most:
+                        <br>
+                        helping you find the right talent with less effort, fewer barriers, and more confidence.
+                    </p>
+                </article>
+                
+                <div class="why-us-grid">
+                    <section class="animate-on-scroll delay-400" style="padding-right: 3rem;">
+                        <h3 style="">Why VHiMS Exists</h3>
+                        <p style="line-height: 1.7; font-size: 1.05rem; text-align: justify;">
+                            Hiring teams deserve tools that understand context, meaning, and intent — not just keywords and checkboxes.
+                            <br>
+                            Visionary Hire infera Metrix System was built to remove chaos from the hiring journey and replace it with clarity, organisation, and insight.
+                        </p>
+                    </section>
+
+                    <section class="animate-on-scroll delay-500" style="padding-left: 3rem; border-left: 1px solid var(--border-light);">
+                        <h3>Our Operating Model</h3>
+                        <p style="line-height: 1.7; font-size: 1.05rem; text-align: justify;">
+                            We blend human-first reasoning with intelligent automation to support every stage of recruitment.
+                            <br>
+                            VHiMS simplifies the work you shouldn’t have to do and strengthens the decisions that truly matter.
+                        </p>
+                    </section>
+                </div>
+                
+                <h2 class="section-title animate-on-scroll delay-600" style="margin-top: 4rem;">Our Core Principles</h2>
+                
+                <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    
+                    <article class="info-card animate-on-scroll delay-700">
+                        <div class="icon-text-block">
+                            <i class="fas fa-brain" style="color: orangered;"></i>
+                            <div>
+                                <h3>Talent Intelligence</h3>
+                                <p>Real understanding beyond keywords — recognising potential the way a human would.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="info-card animate-on-scroll delay-800">
+                        <div class="icon-text-block">
+                            <i class="fas fa-bolt" style="color: orangered;"></i>
+                            <div>
+                                <h3>Workflow Efficiency</h3>
+                                <p>Clear, connected processes that reduce manual work and speed up decision-making.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="info-card animate-on-scroll delay-900">
+                        <div class="icon-text-block" >
+                            <i class="fas fa-sitemap" style="color: orangered;"></i>
+                            <div>
+                                <h3>Organised Talent Ecosystem</h3>
+                                <p>A structured, reusable talent pool that grows smarter with every interaction.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <h3 class="section-title" style=" color: var(--primary-color); margin-top: 50px;">Our Drive</h3>
+
+                <div class="mission-vision-grid">
+                    <div class="content-block animate-on-scroll delay-100">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-bullseye" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h3 style="font-size: 1.8rem; margin: 0; color: var(--primary-color);">Our Mission</h3>
+                        </div>
+                        <p style="font-size: 1.2rem; line-height: 1.6; margin-top: 1rem;">
+                            To make hiring simple, intelligent, and confidently human.
+                        </p>
+                    </div>
+
+                    <div class="content-block animate-on-scroll delay-200">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-rocket" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h3 style="font-size: 1.8rem; margin: 0; color: var(--primary-color);">Our Vision</h3>
+                        </div>
+                        <p style="font-size: 1.2rem; line-height: 1.6; margin-top: 1rem;">
+                            A world where every hiring decision is clear, informed, and effortless.
+                        </p>
+                    </div>
+                </div>
+
+                <section class="content-block animate-on-scroll delay-300" style="margin-top: 3rem; text-align: center; padding: 4rem 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem; margin-bottom: 2rem; color: var(--primary-color);">Our Values</h3>
+                    
+                    <div class="values-grid">
+                        <article class="value-card animate-on-scroll delay-400">
+                            <h4>
+                                <i class="fas fa-search"></i> Clarity
+                            </h4>
+                            <p>We prioritise simplicity and transparency in every step of the journey.</p>
+                        </article>
+                        <article class="value-card animate-on-scroll delay-500">
+                            <h4>
+                                <i class="fas fa-user-check"></i> Human-Centred Intelligence
+                            </h4>
+                            <p>Technology should support people — not replace judgement.</p>
+                        </article>
+                        <article class="value-card animate-on-scroll delay-600">
+                            <h4>
+                                <i class="fas fa-check-circle"></i> Reliability
+                            </h4>
+                            <p>Consistency, accuracy, and trust built into every feature.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section style="margin-top: 4rem; text-align: center;" class="cta-section-about animate-on-scroll delay-700">
+                    <h2 style="font-size: 2.5rem; color: var(--primary-color);">A Better Hiring Experience Starts Here</h2>
+                    <p class="cta-block-text" style="font-size: 1.2rem; line-height: 1.8; margin-top: 1rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                        VHiMS — Visionary Hire infera Metrix System — is designed to help you work smarter, stay organised, and focus on the talent that matters.
+                    </p>
+                    
+                    <!-- <a href="{% url 'contact' %}" class="hero-cta-btn primary" style="font-size: 1.2rem; padding: 1rem 3rem; margin-top: 2rem; display: inline-block;">
+                        REGISTER FOR SIGN-IN
+                    </a> -->
+                </section>
+                
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        // --- Django Context Simulation (For JS only) ---
+        // This variable is set by Django and tells the JS if a user is logged in.
+        // NOTE: If you are testing this file outside of a Django project, you may need to manually set this to 'false'.
+        const IS_LOGGED_IN = {% if user.is_authenticated %}true{% else %}false{% endif %};
+        // URL for the actual sign-in page. You must have a URL named 'signin' in your Django setup.
+        const SIGN_IN_URL = "{% url 'signin' %}";
+
+
+        // Function to set the active link based on the current page file name
+        function setActiveNav() {
+            const path = window.location.pathname;
+            // Get the filename (e.g., 'index', 'about'). Default to 'index' if path is root.
+            let page = path.split("/").pop() || 'index'; 
+            if (page === '') page = 'index';
+
+            const links = document.querySelectorAll('.nav-menu .nav-link');
+            
+            links.forEach(link => {
+                link.classList.remove('active');
+                
+                // Compare the link's href with the current page filename
+                // This is a placeholder logic for environments not running Django/URL mapping, 
+                if (link.getAttribute('href').includes(page)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // NEW: Function to dynamically update the copyright year
+        function updateCopyrightYear() {
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        }
+        
+        // Function to get the CSRF token from cookies (required for Django POST)
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.startsWith(name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setActiveNav();
+            // Call the new function to set the current year
+            updateCopyrightYear();
+            
+            // Get the modal elements
+            const modal = document.getElementById("inquiryModal");
+            const btn = document.getElementById("signInBtn");
+            const span = document.getElementsByClassName("close-btn")[0];
+            const form = document.getElementById("inquiryForm");
+            const formMessage = document.getElementById('formMessage');
+
+            // --- **MODIFIED SIGN IN BUTTON HANDLER** ---
+            // Change: Always show the modal first for "Early Bird" request.
+            btn.onclick = function(e) { 
+                e.preventDefault();
+                // Always show the registration modal first, regardless of IS_LOGGED_IN status
+                formMessage.style.display = 'none';
+                form.reset();
+                modal.style.display = "block";
+            } 
+            // --- **END MODIFIED HANDLER** ---
+            
+            // Close Modal (x button)
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            // Close Modal (click outside)
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            // --- **FORM SUBMISSION (AJAX)** ---
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data manually for POST request
+                const formData = new FormData(form);
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        // Use the function to get the token
+                        'X-CSRFToken': getCookie('csrftoken'), 
+                        // Note: Using URLSearchParams requires this content type
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(response => {
+                    // Check if the response is JSON before parsing
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                         return response.json().then(json => {
+                            if (response.ok) {
+                                return json; 
+                            } else {
+                                // Throw error to be caught by the .catch block
+                                throw new Error(json.message || `Server error: ${response.status}`);
+                            }
+                        });
+                    } else {
+                        // Handle non-JSON responses (e.g., HTML redirect on error)
+                         throw new Error(`Server returned status ${response.status}. Expected JSON response.`);
+                    }
+                })
+                .then(result => {
+                    // Success (from Django view logic)
+                    displayMessage(result.message, true);
+                    
+                    // After successful inquiry/registration, redirect to sign-in page
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        // window.location.href = SIGN_IN_URL; 
+                    }, 2000);
+                })
+                .catch(error => {
+                    // Handle network errors or server-side validation/integrity errors
+                    console.error('Submission Error:', error);
+                    displayMessage(error.message || 'An error occurred during submission. Please try again.', false);
+                });
+            });
+            
+            function displayMessage(message, isSuccess) {
+                formMessage.textContent = message;
+                formMessage.className = isSuccess ? 'success' : 'error';
+                formMessage.style.display = 'block';
+            }
+
+            // --- Feature Card Toggle Logic (Improved with Transitions/A11Y) ---
+            document.querySelectorAll('.toggle-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    
+                    if (targetContent) {
+                        // 1. Toggle the 'is-expanded' class (this handles the smooth visual transition via CSS)
+                        const isExpanded = targetContent.classList.toggle('is-expanded');
+                        
+                        // 2. Update the ARIA attribute for accessibility
+                        this.setAttribute('aria-expanded', isExpanded);
+
+                        // 3. Update the button text and icon
+                        const textSpan = this.querySelector('span');
+                        const icon = this.querySelector('i');
+                        
+                        if (isExpanded) {
+                            textSpan.textContent = 'Show Less';
+                            icon.className = 'fas fa-chevron-up'; // Up arrow
+                        } else {
+                            textSpan.textContent = 'Read More';
+                            icon.className = 'fas fa-chevron-down'; // Down arrow
+                        }
+                        
+                        // Optional: Scroll the card into view if it expands far down the page
+                        if (isExpanded) {
+                            // Delay the scroll slightly to allow the transition to start
+                            setTimeout(() => {
+                                targetContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 500); 
+                        }
+                    }
+                });
+            });
+            // --- End Feature Card Toggle Logic ---
+
+
+            // Simple Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Hamburger menu toggle (for mobile)
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('open');
+            });
+        });
+    </script>
+    {% endblock %}
