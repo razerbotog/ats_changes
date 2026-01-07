@@ -14,7 +14,7 @@
   padding-top: 0 !important;
   margin-top: 18vh;
 }
-.hero-container.home-hero > div > h2 {
+.hero-container.home-hero > div > :is(h1, h2){
   color: #293831;
   font-size: 4.25rem !important;
   margin-top: 0 !important;
@@ -51,7 +51,7 @@
     padding-top: 0 !important;
     margin-top: 18vh;
   }
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 3.3rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -86,7 +86,7 @@
     margin-top: 13vh;
   }
 
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 3.1rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -102,7 +102,7 @@
   }
 }
 @media (min-width: 897px) and (max-width: 959px) {
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 2.9rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -127,7 +127,7 @@
     min-height: 60vh !important;
   }
   /* hero */
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 2.7rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -159,7 +159,7 @@
   }
 
   /* hero */
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 2.65rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -210,7 +210,7 @@
   }
 
   /* hero */
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 2.1rem !important;
   }
   .hero-container.home-hero > div > h4 {
@@ -264,7 +264,7 @@
     background-color: #bab3a9;
   }
   /* hero */
-  .hero-container.home-hero > div > h2 {
+  .hero-container.home-hero > div > :is(h1, h2) {
     font-size: 2rem !important;
   }
   .hero-container.home-hero > div > h4 {

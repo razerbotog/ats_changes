@@ -1,0 +1,203 @@
+# myhrproject/hr_app/urls.py
+
+from django.urls import path
+from hr_app import views
+from django.conf.urls.static import static
+from django.conf import settings
+from django.views.generic import TemplateView
+
+from django.http import FileResponse
+from django.conf import settings
+import os
+
+def sitemap(request):
+    filepath = os.path.join(settings.BASE_DIR, 'sitemap.xml')
+    return FileResponse(open(filepath, 'rb'), content_type='application/xml')
+
+def robots(request):
+    filepath = os.path.join(settings.BASE_DIR, 'robots.txt')
+    return FileResponse(open(filepath, 'rb'), content_type='text/plain')
+
+urlpatterns = [
+     path('sitemap.xml', sitemap),
+     path('robots.txt', robots),
+
+    # Authentication URLs
+    path('signup/', views.signup_view, name='signup'),
+    path('signin/', views.signin_view, name='signin'),
+    path('signout/', views.signout_view, name='signout'),
+
+
+    path('create-user/', views.create_user, name='create_user'),
+
+
+    # Role-based Dashboards (new)
+    path('admin_dashboard/', views.admin_dashboard_view, name='admin_dashboard'),
+    path('superadmin_dashboard/', views.superadmin_dashboard_view, name='superadmin_dashboard'),
+    path('toggle_user_status/<int:user_id>/', views.toggle_user_status, name='toggle_user_status'),
+    # path('reset-password/<int:user_id>/', views.reset_user_password, name='reset_user_password'),
+    path('set-password/<int:user_id>/', views.set_user_password, name='set_user_password'),
+
+    # Existing URLs (ensure they are protected with @login_required in views.py)
+    # path('', views.home, name='home'), # Redirects to dashboard now
+    path('resume-analysis/', views.resume_analysis_view, name='resume_analysis'),
+    # path('analysis/get-folders/', views.get_folders_api, name='get_folders_api'),
+    # path('analysis/get-resumes/<int:folder_id>/', views.get_resumes_in_folder_api, name='get_resumes_in_folder_api'),
+    path('api/delete-application/<int:app_id>/', views.delete_application, name='delete_application_api'),
+    path('resume-analysis/<int:application_id>/', views.resume_analysis_view, name='resume_analysis_with_id'),    path('advance_resume_analysis/', views.advance_resume_analysis_view, name='advance_resume_analysis'),
+    path('initiate_call_interview/', views.initiate_call_interview, name='initiate_call_interview'),
+    path('candidate_profile/', views.candidate_profile, name='candidate_profile'),
+    path('interviews/', views.interview_dashboard_view, name='interviews'),
+    path('interviews/<int:candidate_id>/', views.interview_detail_view, name='interview_detail'),
+
+    # path('interview-status/', views.interview_status_view, name='interview_status'),
+    path('interview-status/<int:candidate_id>/', views.interview_status_view, name='interview_status'),
+    path('records/', views.candidate_records_view, name='records'),
+# Task Assignment (Dynamic)
+    path('assign/task/', views.assign_task, name='assign_task'), 
+    
+    # Chat Endpoints (Dynamic)
+    path('api/tasks/<int:candidate_id>/chat/history/', views.chat_history_view, name='chat_history'),
+    path('api/tasks/<int:candidate_id>/chat/send/', views.send_chat_message_view, name='send_chat_message'),
+    path('profile/<int:pk>/', views.candidate_profile, name='candidate_profile'), # ADD THIS LINE
+    path('records/run-ai/<int:candidate_id>/', views.run_advance_ai_analysis_view, name='run_advance_ai_analysis'),
+    path('records/delete/<int:pk>/', views.candidate_delete_view, name='candidate_delete'),
+    path('selected_candidate/', views.selected_candidate, name='selected_candidate'),
+    path('rejected_candidate/', views.rejected_candidate, name='rejected_candidate'),
+    path('shortlisted_candidate/', views.shortlisted_candidate, name='shortlisted_candidate'),
+    path('airtable-data/', views.airtable_data_view, name='airtable_data'),
+    path('post-to-airtable/', views.post_data_to_airtable_view, name='post_to_airtable'),
+    path('recommendations/', views.top_recommendations_view, name='top_recommendations'),
+    path('dashboard/', views.dashboard, name='dashboard'), # Your main dashboard
+    path('candidate_profile/<int:candidate_id>/', views.candidate_profile_view, name='candidate_profile'),
+
+    # NEW: URL for showing upcoming applications/mails
+    # path('applications/', views.show_unread_emails, name='show_applications'),
+    path("applications/", views.show_unread_emails, name="show_unread_emails"),
+    path('api/start-analysis/', views.start_analysis_task, name='api_start_analysis'),
+    path('api/check-analysis-status/<str:task_id>/', views.check_analysis_status, name='api_check_status'),
+    path('update_application_data/', views.update_application_data, name='update_application_data'),
+
+    # NEW: URL for processing ATS options
+    path('process_ats/<str:email_id>/<str:ats_type>/', views.process_ats_option, name='process_ats_option'),
+
+    path('configure-email/', views.configure_email, name='configure_email'),
+    path('send-job-description/', views.send_job_description, name='send_job_description'),
+    # path('success/', views.success_page, name='success_page'),
+    # path('configure_email/', views.configure_email, name='configure_email'),
+    # path('send_job_description/', views.send_job_description, name='send_job_description'),
+    path('sent_emails/', views.sent_emails, name='sent_emails'),
+    path('inbox/', views.inbox, name='inbox'),
+    path('success/', views.success_page, name='success_page'),
+    path('get_job_description_content/<int:job_id>/', views.get_job_description_content, name='get_job_description_content'),
+    path('email_dashboard/', views.email_dashboard, name='email_dashboard'),
+
+
+    path('analyze-resume/<int:email_id>/<str:analysis_type>/<int:job_description_id>/', views.analyze_resume, name='analyze_resume_with_jd'),
+    path('analyze-resume/<int:email_id>/<str:analysis_type>/', views.analyze_resume, name='analyze_resume_without_jd'),
+
+    path('job-descriptions/', views.all_job_descriptions, name='all_job_descriptions'),
+    path('job-descriptions/create/', views.create_job_description, name='create_jd'),
+    path('job-descriptions/upload/', views.upload_job_description, name='upload_jd'),
+    path('job-descriptions/<int:jd_id>/edit/', views.edit_job_description, name='edit_jd'), # New Edit path
+    path('delete-jd/<int:jd_id>/', views.delete_jd, name='delete_jd'),
+    path('analyze-jd/<int:jd_id>/', views.analyze_jd, name='analyze_jd'),# You'll need to create analyze_jd.html
+
+    path('analyze-resume/<int:email_id>/<str:analysis_type>/<int:jd_id>/', views.analyze_application_view, name='analyze_application_with_jd'),
+    path('analyze-resume/<int:email_id>/<str:analysis_type>/', views.analyze_application_view, name='analyze_application'),
+    path('analysis-results/<int:analysis_id>/', views.analysis_results_view, name='analysis_results'),
+    # New URL for the HTML page
+    
+    # path('results/<uuid:email_id>/<str:analysis_type>/', views.analysis_page, name='analysis_page_no_jd'),
+    # path('results/<uuid:email_id>/<str:analysis_type>/<uuid:job_description_id>/', views.analysis_page, name='analysis_page_with_jd'),
+    path('calendar_scheduler/', views.calendar_scheduler, name='calendar_scheduler'),
+
+    # path('post-jobs/', views.post_jobs, name='post_jobs_view'),
+
+    path('career_portal/', views.list_careers, name='career_portal'),
+    
+    path('career_mainpage/', views.career_mainpage, name='career_mainpage'),
+    # path('career_mainpage/<str:username>/', views.career_mainpage, name='career_mainpage'),
+
+    # path('job_detail/', views.job_detail, name='job_detail'),
+    path('careers/add-job/', views.add_job_listing, name='add_job'),
+    path('job_detail/<int:job_id>/', views.job_detail, name='job_detail'),
+    path('job/<int:job_id>/apply/', views.apply_for_job, name='apply_for_job'),
+    path("settings_careerpage/", views.settings_careerpage, name="settings_careerpage"),
+    path("toggle-career-page/", views.toggle_career_page, name="toggle_career_page"),
+    # path("career/<str:username>/", views.career_mainpage, name="career_mainpage"),
+
+    path('edit-job/<int:job_id>/', views.edit_job, name='edit_job'),
+    path('delete-job/<int:job_id>/', views.delete_job, name='delete_job'),
+    path('edit-category/<int:category_id>/', views.edit_category, name='edit_category'),
+    path('delete-category/<int:category_id>/', views.delete_category, name='delete_category'),
+
+
+    path('', views.index, name='index'),
+    path('features/', views.features, name='features'),
+    path('contact/', views.contact, name='contact'),
+    path('contact_messages/', views.contact_messages, name='contact_messages'),
+    path('inquiry_list/', views.inquiry_list, name='inquiry_list'),
+    path('account_upgrade_request/', views.account_upgrade_request, name='account_upgrade_request'),
+    path('about/', views.about, name='about'),
+
+    #  path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml")),
+
+    path('recruiter_report/', views.recruiter_report, name='recruiter_report'),
+
+
+
+
+    # path('careers/manage/<int:job_id>/', views.manage_job, name='manage_job'),
+    # path('toggle_job_status/<int:job_id>/', views.toggle_job_status, name='toggle_job_status'),
+    # path('apply_for_job/<int:career_id>/', views.apply_for_job, name='apply_for_job'),
+    
+    path('create_job/', views.create_job, name='create_job'),
+    path('update_job/<int:job_id>/', views.update_job, name='update_job'),
+    path('delete_job/<int:job_id>/', views.delete_job, name='delete_job'),
+    path('toggle_job_status/<int:job_id>/', views.toggle_job_status, name='toggle_job_status'),
+    path('apply_for_job/<int:career_id>/', views.apply_for_job, name='apply_for_job'),
+
+    path('open_source_platform/', views.open_source_platform, name='open_source_platform'),
+
+    path('toggle/<int:pk>/', views.toggle_status, name='toggle_status'),
+    path('share/<int:pk>/', views.share_career, name='share_career'),
+    path('careers/<int:pk>/', views.career_detail, name='career_detail'),
+
+    # path('basic-ats/<int:application_id>/<int:job_description_id>/', views.basic_ats_analysis, name='basic_ats_analysis'),
+    # path('basic-ats/<int:application_id>/', views.basic_ats_analysis, name='basic_ats_analysis'),
+    # path('advance-ats/<int:application_id>/', views.advance_ats_analysis, name='advance_ats_analysis'),
+    path('basic-ats/<int:application_id>/<int:job_description_id>/', views.basic_ats_analysis, name='basic_ats_analysis'),
+
+    path('advance-ats/<int:application_id>/', views.advance_ats_analysis, name='advance_ats_analysis'),
+
+
+    path('file_manager/', views.file_manager_view, name='file_manager'),
+    path('browse/<int:folder_id>/', views.file_manager_view, name='browse_folder'),
+    
+    path('create_folder/', views.create_folder_view, name='create_folder'),
+    path('delete_folder/<int:folder_id>/', views.delete_folder_view, name='delete_folder'),
+    path('edit_folder/<int:folder_id>/', views.edit_folder_view, name='edit_folder'),
+    path('delete_document/<int:document_id>/', views.delete_document_view, name='delete_document'),
+    path('upload_file/', views.upload_file_view, name='upload_file'),
+    path('ai_sort/', views.ai_auto_sort_view, name='ai_auto_sort'),
+
+    path('departments/<str:department_name>/', views.career_department_view, name='career_departments_detail'),
+    path('departments/', views.career_department_view, name='career_departments_list'),
+
+    # Keep the applied candidates view separate as it needs a different context/permissions
+    path('jobs/<int:job_id>/candidates/', views.applied_candidates_view, name='applied_candidates'),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    
+# Serve sitemap.xml from root directory
+urlpatterns += [
+    path('sitemap.xml', lambda request: serve(
+        request,
+        os.path.join(settings.BASE_DIR, 'sitemap.xml'),
+        content_type='application/xml'
+    )),
+]

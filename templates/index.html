@@ -4,13 +4,46 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VHiMS - Home (Dashboard)</title>
+    <!-- <title>VHiMS - Home (Dashboard)</title> -->
+    <title>{% block title %}VHiMS – AI Hiring Platform{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}VHiMS is an AI-powered applicant tracking system that automates resume screening, smart shortlisting, and interviews to help teams hire faster and smarter.{% endblock %}" />
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{% block canonical %}https://vhims.com{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}VHiMS – AI Hiring Platform{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}VHiMS is an AI-powered applicant tracking system that automates resume screening, smart shortlisting, and interviews to help teams hire faster and smarter.{% endblock %}" />
+    <meta property="og:url" content="{% block og_url %}https://vhims.com{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{% block og_image %}https://vhims.com/static/logo/VHIMS_logo.jpg{% endblock %}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% block twitter_title %}VHiMS – AI Hiring Platform{% endblock %}" />
+    <meta name="twitter:description" content="{% block twitter_description %}VHiMS is an AI-powered applicant tracking system that automates resume screening, smart shortlisting, and interviews to help teams hire faster and smarter.{% endblock %}" />
+    {% block organization_schema %}
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "VHiMS",
+    "url": "https://vhims.com",
+    "logo": "https://vhims.com/static/logo/VHIMS_logo.jpg",
+    "description": "VHiMS is an AI-powered applicant tracking system that automates resume screening, smart shortlisting, and interviews to help teams hire faster and smarter.",
+    "sameAs": [
+        "https://www.facebook.com/share/1JbiyfANzm/",
+        "https://x.com/_VHiMS",
+        "https://www.linkedin.com/company/vhims",
+        "https://www.instagram.com/_vhims/"
+    ]
+    }
+    </script>
+    {% endblock %}
+
      {% include "head.html" %}
+     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         /* style_home.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -1041,7 +1074,6 @@ body.dark-mode .feature-card .detailed-description.is-expanded {
 }
     </style>
 
-    <!-- <link rel="stylesheet" href="{% static 'css/responsive-fixes.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/index-ui-fixes.css' %}">
 
 </head>
@@ -1050,10 +1082,10 @@ body.dark-mode .feature-card .detailed-description.is-expanded {
     <nav class="navbar container">
         <div class="nav-container">
             
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+            <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> -->
 
            <a href="{% url 'index' %}" style="text-decoration: none !important;"><div class="nav-logo" style="font-family: 'Rubik', 'Poppins', sans-serif; font-size: 28px; display: flex; align-items: center; gap: 10px;">
-                <img src="{% static '../static/logo/VHIMS_logo.jpg' %}" style="width: 50px;">
+                <img src="{% static '../static/logo/VHIMS_logo.jpg' %}" style="width: 50px;" alt="logo">
                 <span style="font-weight: 600;">VH<span style="color: orangered;">i</span>MS</span>
 <strong>
                     <!-- <h5 class="mb-0 ms-3 d-none d-md-block" style="color:#3e4f47; font-size: 25px;" >
@@ -1152,7 +1184,7 @@ Your all-in-one recruitment hub, designed to streamline your hiring process with
                     <div class="cta-contact">
                         <div class="pill">
                             <a href="{% url 'contact' %}"><p>Contact Us</p></a>
-                            <img src="../static/images/home-contact-cta.png" alt="">
+                            <img src="../static/images/home-contact-cta.png" alt="Contact Us" />
                         </div>
                     </div>
         </section>
@@ -1327,7 +1359,7 @@ You get accurate shortlists and better hiring decisions without the noise — el
             <div class="footer-content">
                 <div class="footer-brand">
     <div class="footer-logo">
-        <img src="{% static '../static/logo/VHIMS_logo.jpg' %}" style="width: 50px;"> &nbsp;
+        <img src="{% static '../static/logo/VHIMS_logo.jpg' %}" style="width: 50px;" alt="logo"> &nbsp;
         <span>VHiMS</span>
     </div>
     <p>Visionary Hire infera Metrix System (VHiMS) is an intelligent ATS built to make hiring clear, structured, and confidently human.</p>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Visionary Hire Infera Metrix System</title> -->
+    <title>Sign In – VHiMS</title>
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:title" content="Sign In – VHiMS" />
+    <meta property="og:description" content="Sign in to VHiMS to manage AI-powered hiring workflows, candidate screening, interviews, and recruitment analytics securely." />
+    <meta property="og:url" content="https://vhims.com/signin/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://vhims.com/static/logo/VHIMS_logo.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sign In – VHiMS" />
+    <meta name="twitter:description" content="Sign in to VHiMS to manage AI-powered hiring workflows, candidate screening, interviews, and recruitment analytics securely." />
+    {% include "head.html" %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            /* Your Palette */
+            --bg-light: #f9f9fb; /* Very light background */
+            --accent-main: orangered; 
+            --accent-hover: #e64a19; 
+            --text-primary: #3e4f47; /* Dark green/gray (Main text) */
+            --text-secondary: #bab3a9; /* Muted text/graphic color */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light); 
+            color: var(--text-primary);
+        }
+        
+        /* Left Panel - Subtly complex background */
+        .left-panel {
+            background-color: var(--bg-light); 
+        
+            background-size: 80px 80px;
+            background-repeat: repeat;
+            background-position: 0 0, 40px 40px;
+            
+            /* Apply a slight blur/opacity to the background pattern */
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .left-panel-content {
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Input Styling */
+        .input-split {
+            border: 2px solid #e5e7eb;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 500;
+        }
+
+        .input-split:focus {
+            outline: none;
+            border-color: var(--accent-main);
+            box-shadow: 0 0 0 4px rgba(255, 69, 0, 0.1); /* Subtle glow */
+        }
+
+        /* Primary Button Styling */
+        .btn-primary {
+            background-color: var(--accent-main);
+            color: white; 
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        
+        /* Accent Colors */
+        .text-accent {
+            color: var(--accent-main);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+    <div class="bg-white rounded-xl shadow-2xl overflow-hidden max-w-5xl w-full flex flex-col lg:flex-row lg:h-[600px] transform transition-shadow duration-300">
+        
+        <div class="left-panel flex-shrink-0 hidden lg:block lg:w-2/5 p-12 lg:flex flex-col justify-between">
+            <div class="left-panel-content">
+                <div class="flex items-center space-x-3 mb-16">
+                    <div class="text-accent">
+                        <i class="fas fa-microchip text-4xl"></i>
+                    </div>
+                    <span class="text-3xl font-extrabold tracking-tight text-text-primary" style="font-family: 'Roboto', sans-serif;">
+                        VHiMS
+                    </span>
+                </div>
+
+                <h2 class="text-4xl font-extrabold leading-tight text-text-primary mt-12 mb-6">
+                    Visionary Hire <span class="text-accent">Infera</span> Metrix System.
+                </h2>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    Gain seamless access to your global intelligence dashboard. Your data integrity is our priority.
+                </p>
+            </div>
+            
+            <div class="left-panel-content text-sm text-gray-500">
+                &copy; 2025 Visionary Hire Infera Metrix System
+            </div>
+        </div>
+
+        <div class="w-full lg:w-3/5 p-6 sm:p-12 bg-white flex flex-col justify-center">
+            
+            <div class="mb-2">
+                <h3 class="text-3xl font-bold text-text-primary">Sign In</h3>
+                <p class="text-gray-500 mt-1">Enter your credentials below</p>
+            </div>
+
+            {% if messages %}
+            <div class="mb-6">
+                {% for message in messages %}
+                <div class="p-3 mb-2 rounded-lg text-sm shadow-sm 
+                    {% if message.tags == 'success' %}bg-green-100 text-green-700
+                    {% else %}bg-red-100 text-red-700{% endif %} 
+                    flex items-center border border-gray-200">
+                    <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %} mr-3"></i>
+                    <p>{{ message }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <div>
+                    <label for="username" class="block text-xs uppercase font-bold tracking-wider mb-2 text-text-primary">Username</label>
+                    <input type="text" name="username" id="username" autocomplete="username" required
+                        class="w-full px-4 py-3 rounded-lg input-split text-base" placeholder="Enter your username"> </div>
+                
+                <div>
+                    <label for="password" class="block text-xs uppercase font-bold tracking-wider mb-2 text-text-primary">Password</label>
+                    <div class="relative">
+                        <input type="password" name="password" id="password" autocomplete="current-password" required
+                            class="w-full px-4 py-3 rounded-lg input-split text-base" placeholder="••••••••"> <span class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 cursor-pointer hover:text-accent transition-colors" onclick="togglePassword()">
+                            <i id="password-toggle-icon" class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-sm pt-2">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent">
+                        <label for="remember-me" class="ml-2 block text-gray-600 select-none">
+                            Remember Me
+                        </label>
+                    </div>
+                    <a href="#" class="font-semibold text-accent hover:text-accent-hover transition-colors text-sm">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <button type="submit" class="btn-primary w-full py-3.5 rounded-lg text-lg uppercase tracking-wider mt-6 shadow-md shadow-orange-500/30">
+                    Secure Sign In
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-sm border-t pt-6 border-gray-100">
+                <p class="text-gray-500">Don't have an account? 
+                    </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('password-toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>
